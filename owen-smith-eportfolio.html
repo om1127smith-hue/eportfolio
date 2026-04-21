@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owen Smith — ENC 1101 ePortfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f0e8;
+    --cream: #ede8dc;
+    --accent: #2d5016;
+    --accent-light: #4a7a28;
+    --gold: #b8860b;
+    --muted: #6b6357;
+    --line: rgba(45,80,22,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--accent); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 55%; height: 100%;
+    background: var(--cream);
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-label {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent-light);
+    margin-bottom: 20px; display: block;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.15; font-weight: 700;
+    color: var(--ink); margin-bottom: 28px;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 460px; line-height: 1.8; margin-bottom: 40px;
+  }
+  .hero-cta {
+    display: inline-block; padding: 14px 34px;
+    background: var(--accent); color: #fff;
+    text-decoration: none; font-size: 0.88rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .outcome-cards { display: flex; flex-direction: column; gap: 12px; }
+  .outcome-card {
+    background: #fff; border-left: 3px solid var(--accent);
+    padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    animation: slideIn 0.6s ease both;
+  }
+  .outcome-card:nth-child(1) { animation-delay: 0.1s; }
+  .outcome-card:nth-child(2) { animation-delay: 0.2s; }
+  .outcome-card:nth-child(3) { animation-delay: 0.3s; }
+  .outcome-card:nth-child(4) { animation-delay: 0.4s; }
+  .outcome-card:nth-child(5) { animation-delay: 0.5s; }
+  .outcome-card:nth-child(6) { animation-delay: 0.6s; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .outcome-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--accent); font-weight: 700;
+    min-width: 28px;
+  }
+  .outcome-text { font-size: 0.82rem; font-weight: 500; color: var(--ink); }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 100px 48px; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent-light); font-weight: 500; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    line-height: 1.2; margin-bottom: 32px;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .divider {
+    width: 60px; height: 2px; background: var(--accent);
+    margin-bottom: 48px;
+  }
+
+  /* ─── ABOUT ─── */
+  .about { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-text p { color: var(--muted); font-size: 1.02rem; margin-bottom: 20px; }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    margin-top: 8px;
+  }
+  .quote-block blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.15rem;
+    color: var(--ink); line-height: 1.65; margin-bottom: 12px;
+  }
+  .quote-source { font-size: 0.8rem; color: var(--muted); font-weight: 500; letter-spacing: 0.05em; }
+
+  /* ─── OUTCOMES ─── */
+  .outcomes { background: var(--paper); }
+  .outcomes-intro { max-width: 680px; color: var(--muted); font-size: 1.02rem; margin-bottom: 60px; }
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .outcome-item {
+    padding: 32px 28px;
+    border: 1px solid var(--line);
+    background: #fff;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .outcome-item:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .outcome-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--accent); font-weight: 700;
+    margin-bottom: 16px; display: block;
+  }
+  .outcome-item h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
+  .outcome-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+  /* ─── ASSIGNMENTS ─── */
+  .assignments { background: var(--ink); }
+  .assignments .section-label { color: #8db870; }
+  .assignments .section-title { color: #fff; }
+  .assignments .divider { background: var(--gold); }
+  .assignments-intro { max-width: 640px; color: rgba(255,255,255,0.6); font-size: 1.02rem; margin-bottom: 60px; }
+
+  .assignment-tabs {
+    display: flex; gap: 4px; margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    padding: 12px 24px; background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.45); transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab-btn.active { color: #fff; border-bottom-color: var(--gold); }
+  .tab-btn:hover { color: rgba(255,255,255,0.8); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+
+  .assignment-meta {}
+  .assignment-tag {
+    display: inline-block;
+    padding: 4px 12px; background: rgba(184,134,11,0.2);
+    color: var(--gold); font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .assignment-meta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; color: #fff; line-height: 1.3; margin-bottom: 20px;
+  }
+  .assignment-meta p { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.75; margin-bottom: 16px; }
+  .outcome-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .badge {
+    padding: 5px 12px; border: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .pdf-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 28px; padding: 12px 22px;
+    border: 1px solid var(--gold); color: var(--gold);
+    text-decoration: none; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+  .pdf-link:hover { background: var(--gold); color: var(--ink); }
+  .pdf-link svg { width: 15px; height: 15px; fill: currentColor; }
+
+  .assignment-body {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 36px;
+    max-height: 560px; overflow-y: auto;
+  }
+  .assignment-body::-webkit-scrollbar { width: 4px; }
+  .assignment-body::-webkit-scrollbar-track { background: transparent; }
+  .assignment-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
+  .assignment-body h3 {
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: 1rem; margin-bottom: 16px; font-weight: 400; font-style: italic;
+  }
+  .assignment-body p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.8; margin-bottom: 16px; }
+  .assignment-body p:last-child { margin-bottom: 0; }
+
+  /* ─── REFLECTION ─── */
+  .reflection { background: var(--cream); }
+  .reflection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .reflection-text p { color: var(--muted); font-size: 1.02rem; margin-bottom: 20px; }
+  .revision-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .revision-table th {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    padding: 10px 14px; text-align: left;
+    border-bottom: 2px solid var(--accent);
+  }
+  .revision-table td {
+    padding: 12px 14px; font-size: 0.85rem; color: var(--muted);
+    border-bottom: 1px solid var(--line); vertical-align: top;
+  }
+  .revision-table tr:hover td { background: rgba(45,80,22,0.04); }
+  .revision-table .label {
+    font-weight: 600; color: var(--ink); white-space: nowrap;
+  }
+
+  /* ─── GROWTH ─── */
+  .growth { background: var(--paper); }
+  .growth-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .growth-card {
+    padding: 36px 32px;
+    border-top: 3px solid var(--accent);
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+  .growth-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; margin-bottom: 14px; color: var(--ink);
+  }
+  .growth-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+  .growth-card .before-after {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;
+  }
+  .before, .after {
+    padding: 12px 14px; font-size: 0.82rem; line-height: 1.55;
+  }
+  .before { background: #fdf2f2; color: #7a3b3b; border-left: 2px solid #c97a7a; }
+  .after { background: #f2f7f2; color: #2d5016; border-left: 2px solid var(--accent-light); }
+  .ba-label { font-weight: 600; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.4);
+    text-align: center; padding: 48px;
+    font-size: 0.82rem; letter-spacing: 0.05em;
+  }
+  footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 18px; }
+    section { padding: 70px 24px; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero::before { display: none; }
+    .about-grid, .reflection-grid, .tab-content.active { grid-template-columns: 1fr; gap: 40px; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .growth-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Owen Smith</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#assignments">Assignments</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+    <li><a href="#growth">Growth</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <span class="hero-label">ENC 1101 · ePortfolio · Spring 2026</span>
+    <h1 class="hero-title">Writing as a <em>Tool,</em> Not a Performance</h1>
+    <p class="hero-desc">
+      A semester-long record of how my relationship with writing changed — through personal narrative,
+      genre analysis, and deliberate revision — across ENC 1101.
+    </p>
+    <a href="#assignments" class="hero-cta">View My Work</a>
+  </div>
+  <div class="hero-visual">
+    <div class="outcome-cards">
+      <div class="outcome-card"><span class="outcome-num">01</span><span class="outcome-text">Writing Processes &amp; Adaptation</span></div>
+      <div class="outcome-card"><span class="outcome-num">02</span><span class="outcome-text">Multiple Literacies &amp; Goal Setting</span></div>
+      <div class="outcome-card"><span class="outcome-num">03</span><span class="outcome-text">Variation across Contexts</span></div>
+      <div class="outcome-card"><span class="outcome-num">04</span><span class="outcome-text">Decision Making &amp; Production</span></div>
+      <div class="outcome-card"><span class="outcome-num">05</span><span class="outcome-text">Writing and Power</span></div>
+      <div class="outcome-card"><span class="outcome-num">06</span><span class="outcome-text">Revision</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="section-label">Who I Am</p>
+      <h2 class="section-title">A Writer Shaped by <em>Structure & Struggle</em></h2>
+      <div class="divider"></div>
+      <p>Before ENC 1101, writing was something I did for school — a means to an end. My early literacy experiences, from the rigid structure of AICE coursework to the functional flexibility of engineering notebooks, formed the foundation of how I approach writing today.</p>
+      <p>AICE made me technically precise but emotionally distant from writing. Engineering notebooks gave me permission to write messily and purposefully. Together, these shaped a <strong>writing identity grounded in clarity, purpose, and adaptability</strong> rather than personal expression alone.</p>
+      <p>This portfolio collects the work from that semester and reflects on what it taught me — about writing, about context, and about how literacy is shaped by the institutions and communities we move through.</p>
+    </div>
+    <div>
+      <div class="quote-block">
+        <blockquote>"My literacy experiences in both restrictive and flexible environments ultimately shaped a writing identity grounded in clarity, purpose, and adaptability rather than personal expression alone."</blockquote>
+        <span class="quote-source">— Owen Smith, Major Assignment 1</span>
+      </div>
+      <div class="quote-block" style="margin-top:20px; border-color: var(--accent);">
+        <blockquote>"I now see myself as a writer who approaches writing as a tool rather than an art form. I believe this identity is not a limitation... but a reflection of my literacy history."</blockquote>
+        <span class="quote-source">— Owen Smith, Major Assignment 1 (Revised)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes" id="outcomes">
+  <p class="section-label">Course Learning Outcomes</p>
+  <h2 class="section-title">Six Outcomes, <em>Demonstrated</em></h2>
+  <div class="divider"></div>
+  <p class="outcomes-intro">Each assignment in this portfolio connects to one or more of the six ENC 1101 learning outcomes. Below is how my work engages each outcome — click any assignment to read the full text.</p>
+    <div class="outcomes-grid">
+      <div class="outcome-item">
+        <span class="outcome-icon">01</span>
+        <h3>Writing Processes &amp; Adaptation</h3>
+        <p><em>Artifacts: Literacy Autobiography &amp; Genre Analysis Essay</em></p>
+        <p>The autobiography required tracing my writing history — looking back at habits I'd never examined before. The Genre Analysis required the opposite: taking something I already knew well and analyzing it as a writing practice. Both assignments asked me to reflect on process, just from different directions.</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">02</span>
+        <h3>Multiple Literacies &amp; Goal Setting</h3>
+        <p><em>Artifacts: Reading Journal 4 &amp; Visual Text Analysis</em></p>
+        <p>The reading journal made me think about how I write differently depending on the community I'm in — in engineering writing, I remove personal voice entirely without really thinking about it. The visual analysis pushed me to treat an image the way I would treat a written text, using actual frameworks to figure out what it was doing and why.</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">03</span>
+        <h3>Variation across Contexts</h3>
+        <p><em>Artifacts: Reading Journal 5 &amp; Genre Analysis Essay</em></p>
+        <p>Reading Journal 5 is where I first worked through Dirk's genre framework in relation to a real artifact from my life. I recognized that conventions aren't just familiarity — they carry rhetorical meaning and signal credibility within a community. The essay developed that insight into a full argument across multiple theoretical frameworks.</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">04</span>
+        <h3>Decision Making &amp; Production</h3>
+        <p><em>Artifacts: Genre Analysis Draft &amp; Final Essay</em></p>
+        <p>The draft was short and underdeveloped. The argument was there, but it did not go far enough. Going from the draft to the final version required real decisions about what the essay actually needed — what to expand and what to cut. That is what this outcome is asking for.</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">05</span>
+        <h3>Writing and Power</h3>
+        <p><em>Artifacts: Literacy Autobiography &amp; Reading Journal 4</em></p>
+        <p>The autobiography dealt with how my AICE class shaped my writing — it gave me technical skills, but made writing feel like something I executed rather than engaged with. The program decided what good writing looked like; there was not much room outside that standard. Reading Journal 4 brought in Tremain's ideas about adjusting voice to fit community expectations — I do that in engineering writing. I had just never thought about it that way before.</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">06</span>
+        <h3>Revision</h3>
+        <p><em>Artifacts: Genre Analysis Draft &amp; Final Essay</em></p>
+        <p>The difference between the draft and the final is the clearest example I have of revision actually doing something. It was not just longer. I went back through it and figured out where the argument was doing real work and where it was not. The final version is a different document — not just a longer one.</p>
+      </div>
+    </div>
+</section>
+
+<!-- ASSIGNMENTS -->
+<section class="assignments" id="assignments">
+  <p class="section-label">Major Assignments</p>
+  <h2 class="section-title" style="color:#fff;">The Work <em style="color:var(--gold);">Itself</em></h2>
+  <div class="divider" style="background:var(--gold);"></div>
+  <p class="assignments-intro">Three major assignments formed the spine of this semester. Each one built on the last — from personal narrative, to genre analysis, to reflective revision practice.</p>
+
+  <div class="assignment-tabs">
+    <button class="tab-btn active" onclick="showTab('ma1')">MA1 — Literacy Autobiography</button>
+    <button class="tab-btn" onclick="showTab('ma2')">MA2 — Genre Analysis</button>
+    <button class="tab-btn" onclick="showTab('ma3')">MA3 — Reflection Letter</button>
+  </div>
+
+  <!-- MA1 -->
+  <div class="tab-content active" id="tab-ma1">
+    <div class="assignment-meta">
+      <span class="assignment-tag">Major Assignment 1</span>
+      <h2>Literacy Autobiography: Writing, Sponsors, and Identity</h2>
+      <p>This essay traces my literacy history through two pivotal experiences: my junior year AICE writing class, which made me technically proficient but emotionally distant from writing, and my engineering notebooks, which taught me that writing could be functional, messy, and personally meaningful.</p>
+      <p>Using Brandt's concept of literacy sponsors, Rumsey's heritage literacy framework, and Wardle's ideas about context-dependent transfer, I argue that my writing identity — pragmatic, clarity-focused, and tool-oriented — was not accidental but shaped by layered institutional influences.</p>
+      <div class="outcome-badges">
+        <span class="badge">Writing Processes</span>
+        <span class="badge">Multiple Literacies</span>
+        <span class="badge">Writing &amp; Power</span>
+        <span class="badge">Variation across Contexts</span>
+      </div>
+      <a class="pdf-link" href="ma1-literacy-autobiography.pdf" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17H8v-2h4v2zm4-4H8v-2h8v2z"/></svg>
+        View Full Essay (PDF)
+      </a>
+    </div>
+    <div class="assignment-body">
+      <h3>Excerpt from Major Assignment 1 (Revised)</h3>
+      <p>Before I signed up for this class, I thought of writing as something I only did for school. It was a way to get grades and complete assignments. I did not think of it as a way to express my thoughts and feelings. Writing was like a job. I did what I had to do.</p>
+      <p>One of the most influential literacy experiences in my life was my junior year AICE writing class. This course acted as a powerful literacy sponsor, as Brandt would describe it. Brandt defines literacy sponsors as "any agents, local or distant, concrete or abstract, who enable, support, teach, model, as well as recruit, regulate, suppress, or withhold literacy" (Brandt 166). My AICE class both enabled and constrained my literacy development. On the one hand, it significantly improved my technical writing skills. On the other hand, it reshaped my emotional relationship with writing in ways that were limiting.</p>
+      <p>The course emphasized a rigid structure, strict tone, and near perfect grammar. Essays followed predetermined templates, and deviation often resulted in point deductions or failing grades. Writing became a process of fitting ideas into predefined molds rather than developing them organically.</p>
+      <p>My time writing engineering notebooks was quite different. When I was in engineering classes, the teachers did not care much about grammar or the quality of the writing. They cared about whether my ideas made sense, whether I wrote down what I did, and whether my logic was sound. Unlike the rigid expectations of AICE writing, engineering notebooks allowed flexibility and imperfection. This aligns closely with Rumsey's concept of heritage literacy, which emphasizes how individuals adapt literacy tools to fit their lived experiences and needs.</p>
+      <p>Although AICE made me a stronger technical writer, it also left me viewing writing as something restrictive and performative. That frustration shaped how I approached later literacy experiences. By the time I began writing engineering notebooks, I was already looking for a form of writing that felt more practical and connected to the way I actually think.</p>
+      <p>Today, my feelings about writing are shaped by the difference between my two experiences. I still think it is important to be clear, get to the point, and have a reason for writing. Now I understand how the situation affects my writing, and I am more willing to try different ways of writing.</p>
+    </div>
+  </div>
+
+  <!-- MA2 -->
+  <div class="tab-content" id="tab-ma2">
+    <div class="assignment-meta">
+      <span class="assignment-tag">Major Assignment 2</span>
+      <h2>Workout Plans as a Genre in the Fitness Community</h2>
+      <p>This essay applies genre theory to an artifact from my own life: the workout plans I write and use while training. Drawing on Dirk, Gee, and Jacobson et al., I argue that workout plans are a genre — they follow recognizable conventions (sets, reps, rest periods, progressive structure) that reflect the values and practices of the fitness discourse community.</p>
+      <p>The essay moves from theory to personal artifact, analyzing how my own split-based training plan both conforms to genre conventions and reflects my personal philosophy about fatigue management and muscular recruitment.</p>
+      <div class="outcome-badges">
+        <span class="badge">Variation across Contexts</span>
+        <span class="badge">Decision Making</span>
+        <span class="badge">Multiple Literacies</span>
+      </div>
+      <a class="pdf-link" href="ma2-genre-analysis.pdf" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17H8v-2h4v2zm4-4H8v-2h8v2z"/></svg>
+        View Full Essay (PDF)
+      </a>
+    </div>
+    <div class="assignment-body">
+      <h3>Excerpt from Major Assignment 2 (Revised)</h3>
+      <p>Reading and writing are often associated primarily with academic environments such as classrooms, essays, and textbooks. However, literacy practices extend far beyond school and occur constantly in everyday social contexts. Kerry Dirk explains that genres emerge because writers repeatedly encounter similar rhetorical situations, which leads them to develop familiar responses to those situations (Dirk 252).</p>
+      <p>Workout plans function as a genre because they follow recognizable conventions such as structured organization, measurable training parameters, and progress tracking. These conventions shape how training information is communicated and determine whether a plan appears credible and useful within the fitness community.</p>
+      <p>The language used in my workout plan directly reflects what Gee describes as an "identity kit." Terms such as "progressive overload," "volume," "compound lifts," and "fatigue management" are not simply technical vocabulary; they signal participation in the shared values and practices of the fitness discourse community. For example, when I organize my plan around upper and lower splits, track total weekly training volume, and structure rest days to manage recovery, I am using the same language and decision making framework that experienced lifters use to evaluate effective programming.</p>
+      <p>The structure of my workout plan reflects a lot of the conventions found in programs online, but it is also shaped directly by how I train and what I have learned works best for me. I follow a structure built around repeating upper and lower sessions, organized as four days on, one day off. My upper days are longer, around seventeen sets, because of the number of muscle groups involved, while my lower days are closer to eight sets.</p>
+      <p>Instead of doing multiple sets of the same exercise, I spread my volume across different movements that train the same muscle in slightly different ways. For example, rather than repeating pec flies, I will do one set of a standard fly and one set of a low-to-high cable fly to target different functions of the chest. This approach comes from my own experience prioritizing more complete muscular recruitment rather than simply repeating the same movement.</p>
+      <p>Ultimately, examining workout plans as a genre reveals how writing functions as a socially shaped activity. The conventions of the genre influence how the text is written, how it is interpreted by others, and how it affects the behavior of the people who use it. What may initially seem like a personal planning document is actually part of a broader system of communication within the fitness community.</p>
+    </div>
+  </div>
+
+  <!-- MA3 -->
+  <div class="tab-content" id="tab-ma3">
+    <div class="assignment-meta">
+      <span class="assignment-tag">Major Assignment 3</span>
+      <h2>Response Letter &amp; Revision Reflection</h2>
+      <p>This letter to Professor Gonzalez documents the feedback I received on MA1 and MA2 and explains the deliberate revisions I made in response. It applies frameworks from Grauman (interpreting feedback), Miller (version history as reflection), and Taczak &amp; Robertson (metacognition) to my own revision process.</p>
+      <p>The letter demonstrates that revision is not a corrective afterthought but an integral phase of writing — one that requires rhetorical awareness, reader empathy, and intentional decision-making.</p>
+      <div class="outcome-badges">
+        <span class="badge">Revision</span>
+        <span class="badge">Writing Processes</span>
+        <span class="badge">Decision Making</span>
+      </div>
+      <a class="pdf-link" href="ma3-response-letter.pdf" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17H8v-2h4v2zm4-4H8v-2h8v2z"/></svg>
+        View Full Letter (PDF)
+      </a>
+    </div>
+    <div class="assignment-body">
+      <h3>Excerpt from Major Assignment 3</h3>
+      <p>Dear Professor Gonzalez,</p>
+      <p>I am writing this letter in response to the feedback I received on Major Assignments 1 and 2 throughout the semester. The comments from both my peers and my instructor have enabled me to identify the strengths and weaknesses in my drafts and to make more purposeful and meaningful revisions in my writing. As Jillian Grauman explains, interpreting and acting on feedback is a learned skill that develops through practice and reflection (Grauman). I now recognize that feedback is not simply a list of corrections but a chance to engage more deeply with my writing and its effect on readers.</p>
+      <p>The most significant feedback I received on Major Assignment 1 addressed my use of MLA citations and integration of sources. My instructor observed that, although I referenced course readings such as Brandt and Rumsey, my citations were inconsistent and sometimes improperly formatted. Peers also noted that some transitions between literacy events were abrupt, which made it difficult to follow the connection between my AICE experience and my engineering notebook experience.</p>
+      <p>In response, I concentrated my revisions on three key areas. First, I systematically reviewed all in-text citations and the Works Cited page to correct formatting errors and ensure alignment with MLA 9th edition guidelines. Second, I revised the transitional sentences between my two literary events to clarify the thematic connections. Third, I rewrote my thesis to more clearly articulate the argument that my literacy experiences resulted in a writing identity grounded in purposeful clarity rather than expressive freedom.</p>
+      <p>For Major Assignment 2, I revisited every source I cited and reconstructed the in-text citations and Works Cited entries to ensure proper MLA formatting. I also deepened my analysis by revisiting Gee's concept of identity kits and explicitly applying it to the vocabulary in my workout plan — adding a paragraph that examines how terms such as "progressive overload" and "one rep maximum" function as both lexis and indicators of membership within the fitness discourse community.</p>
+      <p>Reviewing both assignments through the perspective of Taczak and Robertson's work on metacognition has been particularly insightful. They argue that reflective writing enables students to move beyond task completion and toward a more profound understanding of their own writing processes. This letter has served as a form of self-aware reflection for me. Rather than viewing revision as a chore or a reaction to criticism, I now see it as an integral part of the writing process.</p>
+      <p>Respectfully,<br>Owen Smith</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="reflection" id="reflection">
+  <p class="section-label">E-Portfolio Reflection</p>
+  <h2 class="section-title">Looking <em>Back</em></h2>
+  <div class="divider"></div>
+  <div class="reflection-grid">
+    <div class="reflection-text">
+      <p>The portfolio is organized around the six course learning outcomes — each one connected to specific artifacts that demonstrate engagement with that outcome. The goal was to select work that showed not just what was produced, but how thinking developed across the semester.</p>
+      <p>Outcome One pushed me to reflect on my writing history in a way I'd never done before. The Literacy Autobiography required looking backward — tracing where my habits came from and why they felt so fixed. The Genre Analysis required something different: taking a familiar, everyday practice and examining it as though it were new. Both were uncomfortable in different ways, and both produced better thinking because of that discomfort.</p>
+      <p>Outcomes Two and Three sharpened my awareness of how much context shapes communication. Reading Journal 4 helped me recognize that I adjust my writing style based on community expectations almost automatically — a shift I'd never consciously noticed before. The Visual Text Analysis extended that into a new mode entirely, requiring me to apply analytical frameworks to something that wasn't language at all.</p>
+    </div>
+    <div class="reflection-text">
+      <p>For Outcome Three, applying Dirk's genre framework to workout plans was the turning point. What I'd assumed were just practical conventions — sets, reps, rest periods, split structure — turned out to carry rhetorical weight. They signal membership and credibility within the fitness community. That realization reframed the entire essay.</p>
+      <p>Outcome Four is demonstrated most clearly in the distance between my Genre Analysis draft and the final version. The draft had the core argument but didn't develop it far enough. Getting from one to the other meant making deliberate choices: what the essay needed more of, what was taking up space without earning it. That is a different kind of writing than simply adding content.</p>
+      <p>Outcome Five required examining how institutional contexts shape what writing is allowed to look like — and who benefits from those standards. The AICE program improved my technical precision while narrowing what I thought good writing could be. That tension runs through the Literacy Autobiography and connects directly to questions of access and power in literacy education.</p>
+      <p>Outcome Six is where everything came together. Revision, this semester, stopped being a cleanup step and became something more like rethinking. The final Genre Analysis is a structurally different argument from the draft — shaped by feedback, reader perspective, and a clearer understanding of what the essay was actually trying to do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GROWTH -->
+<section class="growth" id="growth">
+  <p class="section-label">Semester Growth</p>
+  <h2 class="section-title">Before &amp; <em>After</em></h2>
+  <div class="divider"></div>
+  <div class="growth-grid">
+    <div class="growth-card">
+      <h3>Understanding of Genre</h3>
+      <p>My thinking about genre changed fundamentally this semester — from "type of writing" to "socially shaped response to recurring situations."</p>
+      <div class="before-after">
+        <div class="before"><span class="ba-label">Before</span>Genre = category label (essay, email, report)</div>
+        <div class="after"><span class="ba-label">After</span>Genre = tool that enables action within a discourse community (Dirk)</div>
+      </div>
+    </div>
+    <div class="growth-card">
+      <h3>Relationship with Feedback</h3>
+      <p>I moved from treating feedback as judgment to treating it as structural information — a map of where my reader got lost.</p>
+      <div class="before-after">
+        <div class="before"><span class="ba-label">Before</span>Feedback = criticism to defend against</div>
+        <div class="after"><span class="ba-label">After</span>Feedback = reader experience data that drives revision (Grauman)</div>
+      </div>
+    </div>
+    <div class="growth-card">
+      <h3>View of Literacy</h3>
+      <p>I used to think literacy was about grammar and grades. Now I understand it as a set of socially situated practices shaped by sponsors, institutions, and power.</p>
+      <div class="before-after">
+        <div class="before"><span class="ba-label">Before</span>Literacy = correct grammar + academic formatting</div>
+        <div class="after"><span class="ba-label">After</span>Literacy = context-dependent, sponsor-shaped, power-inflected practice (Brandt)</div>
+      </div>
+    </div>
+    <div class="growth-card">
+      <h3>Writing Identity</h3>
+      <p>I entered this class thinking my tool-oriented relationship with writing was a limitation. I leave understanding it as a legitimate — and conscious — identity.</p>
+      <div class="before-after">
+        <div class="before"><span class="ba-label">Before</span>"I'm not a real writer because I don't enjoy writing for its own sake."</div>
+        <div class="after"><span class="ba-label">After</span>"I write purposefully and adaptively — that is its own kind of literacy strength."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Owen Smith</strong> · ENC 1101 · Professor Gonzalez · Spring 2026</p>
+  <p style="margin-top:8px;">University of Central Florida · ePortfolio</p>
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
